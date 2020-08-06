@@ -2,7 +2,7 @@ import * as puppeteer from "puppeteer";
 import * as path from "path"
 
 import { Configuration } from "@model";
-import { ConfigurationLoader, ReportFinder } from "@utils";
+import { ConfigurationLoader, ReportFinder, PDFSaver } from "@utils";
 import { ApplicationHeader, DropZone, HtmlReport } from "@widgets";
 
 
@@ -35,8 +35,7 @@ describe("Generate Report", () =>
                 it(`Save report as PDF`, async () =>
                 {
                     const tmsId: string = await HtmlReport.getTitle(page);
-                    const pdfFilepath = path.join(project.outputFolderPath, `${tmsId}.pdf`);
-                    await page.pdf({ path: pdfFilepath, format: "A4" });
+                    await PDFSaver.execute(page, project, tmsId);
                 });
             }
         }
