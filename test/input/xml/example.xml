@@ -1,0 +1,139 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1579258063605' stop='1579258079000'>
+    <name>TC0004_AllergyManagement_e2e</name>
+    <title>TC0004_AllergyManagement_e2e</title>
+    <test-cases>
+        <test-case start='1579258067253' status='passed' stop='1579258069554'>
+            <name>Create an allergy: [name: Name, sign: Sign, symptom: Symptom]</name>
+            <title>Create an allergy: [name: Name, sign: Sign, symptom: Symptom]</title>
+            <labels>
+                <label name='tms' value='TC0004_AllergyManagement_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of an Allergy'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:47 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258068869' status='passed' stop='1579258068869'>
+                    <name>Number of allergies 1</name>
+                    <title>Number of allergies 1</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1579258069186' status='passed' stop='1579258069186'>
+                    <name>All fields are evaluated as expected</name>
+                    <title>All fields are evaluated as expected</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='7e3a9c7b-450d-42e9-a6f8-c1c870493f92-attachment.png' type='image/png' size='46541'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258069554' status='passed' stop='1579258070799'>
+            <name>Create an allergy with invalid data</name>
+            <title>Create an allergy with invalid data</title>
+            <labels>
+                <label name='tms' value='TC0004_AllergyManagement_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of an Allergy'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:49 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258070012' status='passed' stop='1579258070012'>
+                    <name>Invalid allergy</name>
+                    <title>Invalid allergy</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='b63bf094-55c4-4a94-8a4b-74fa1ddde187-attachment.png' type='image/png' size='46541'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258070799' status='passed' stop='1579258071575'>
+            <name>View an allergy</name>
+            <title>View an allergy</title>
+            <labels>
+                <label name='tms' value='TC0004_AllergyManagement_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of an Allergy'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:50 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258070907' status='passed' stop='1579258070907'>
+                    <name>All Allergy fields are evaluated as expected</name>
+                    <title>All Allergy fields are evaluated as expected</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='d76f2b3a-c1c3-419a-a25d-734746049418-attachment.png' type='image/png' size='46773'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258071575' status='passed' stop='1579258073057'>
+            <name>Modify an allergy: [name: Alternative name, sign: Sign, symptom: Symptom]</name>
+            <title>Modify an allergy: [name: Alternative name, sign: Sign, symptom: Symptom]</title>
+            <labels>
+                <label name='tms' value='TC0004_AllergyManagement_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of an Allergy'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:51 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258072311' status='passed' stop='1579258072311'>
+                    <name>Number of allergies 1</name>
+                    <title>Number of allergies 1</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1579258072730' status='passed' stop='1579258072730'>
+                    <name>All fields are evaluated as expected</name>
+                    <title>All fields are evaluated as expected</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='d871bbd8-ddf2-4259-ba75-30b41a61409e-attachment.png' type='image/png' size='48180'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258073057' status='passed' stop='1579258078999'>
+            <name>Delete an allergy</name>
+            <title>Delete an allergy</title>
+            <labels>
+                <label name='tms' value='TC0004_AllergyManagement_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of an Allergy'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:53 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258073466' status='passed' stop='1579258073466'>
+                    <name>Number of allergies 0</name>
+                    <title>Number of allergies 0</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='b3a3d9b4-6d20-40b0-b470-f887ce942689-attachment.png' type='image/png' size='45485'/>
+            </attachments>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
