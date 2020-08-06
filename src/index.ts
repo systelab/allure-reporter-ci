@@ -1,25 +1,46 @@
 import * as puppeteer from "puppeteer";
-import { AllureDropZone } from "./allure-drop-zone";
+import * as path from "path"
+
+import { Configuration } from "@model";
+import { ConfigurationLoader, ReportFinder } from "@utils";
+import { ApplicationHeader, DropZone, HtmlReport } from "@widgets";
 
 
 describe("Generate Report", () =>
 {
     let browser: puppeteer.Browser;
     let page: puppeteer.Page;
+    let configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json");
 
     before(async () =>
     {
         browser = await puppeteer.launch({ headless: true });
         page = await browser.newPage();
-        await page.goto("https://systelab.github.io/allure-reporter/", { waitUntil: "networkidle2" });
+        await page.goto(configuration.website, { waitUntil: "networkidle2" });
     });
 
-    it("Generate report for test 1", async () =>
+    for (const project of configuration.projects)
     {
-        await page.reload();
-        await AllureDropZone.uploadFile(page, "input/example.xml");
-        await page.pdf({ path: 'report/output.pdf', format: "A4" });
-    });
+        for (const inputReport of ReportFinder.execute(project))
+        {
+            it(`Load report file '${inputReport.filepath}'`, async () =>
+            {
+                await page.reload();
+                await DropZone.uploadFile(page, inputReport.filepath);
+                await ApplicationHeader.hideSummary(page);
+            });
+
+            if (project.saveAsPDF)
+            {
+                it(`Save report as PDF`, async () =>
+                {
+                    const tmsId: string = await HtmlReport.getTitle(page);
+                    const pdfFilepath = path.join(project.outputFolderPath, `${tmsId}.pdf`);
+                    await page.pdf({ path: pdfFilepath, format: "A4" });
+                });
+            }
+        }
+    }
 
     after(async () =>
     {
