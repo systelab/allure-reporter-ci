@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register",
-        "report": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --spec src/index.ts"
+        "report": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --spec src/index.ts --reporter spec --timeout 999999 --colors --full-trace"
     },
     "keywords": [],
     "author": "CSW",
