@@ -1,0 +1,85 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1579258079005' stop='1579258102312'>
+    <name>TC0003_PatientManagement_Allergy_e2e</name>
+    <title>TC0003_PatientManagement_Allergy_e2e</title>
+    <test-cases>
+        <test-case start='1579258088364' status='passed' stop='1579258091772'>
+            <name>Assign an allergy to a patient: [name: Name, assertedDate: 01/01/2019, comments: Comments]</name>
+            <title>Assign an allergy to a patient: [name: Name, assertedDate: 01/01/2019, comments: Comments]</title>
+            <labels>
+                <label name='tms' value='TC0003_PatientManagement_Allergy_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of a Patient'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:48:08 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258091036' status='passed' stop='1579258091036'>
+                    <name>Number of allergies from patient 1</name>
+                    <title>Number of allergies from patient 1</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1579258091397' status='passed' stop='1579258091397'>
+                    <name>All fields are evaluated as expected</name>
+                    <title>All fields are evaluated as expected</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='3009c5c6-8cd5-4b20-afd3-eb3ff3a3454e-attachment.png' type='image/png' size='83985'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258091772' status='passed' stop='1579258094208'>
+            <name>Assign an allergy with invalid data to a patient</name>
+            <title>Assign an allergy with invalid data to a patient</title>
+            <labels>
+                <label name='tms' value='TC0003_PatientManagement_Allergy_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of a Patient'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:48:11 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258093532' status='passed' stop='1579258093532'>
+                    <name>Invalid allergy</name>
+                    <title>Invalid allergy</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='80f6134b-2718-4b5d-ac9d-ebc15e928b99-attachment.png' type='image/png' size='83907'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258094208' status='passed' stop='1579258100112'>
+            <name>Remove an allergy from a patient</name>
+            <title>Remove an allergy from a patient</title>
+            <labels>
+                <label name='tms' value='TC0003_PatientManagement_Allergy_e2e'/>
+                <label name='feature' value='Purpose: This TC is intended to verify the CRUD of a Patient'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:48:14 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258094626' status='passed' stop='1579258094626'>
+                    <name>Number of Allergies from patient 0</name>
+                    <title>Number of Allergies from patient 0</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='322b9905-ad7b-4998-86e6-594b07bf2c0a-attachment.png' type='image/png' size='81410'/>
+            </attachments>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

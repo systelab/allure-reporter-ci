@@ -1,0 +1,74 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1579258050363' stop='1579258063577'>
+    <name>TC0002_LoginManagement_e2e</name>
+    <title>TC0002_LoginManagement_e2e</title>
+    <test-cases>
+        <test-case start='1579258050363' status='passed' stop='1579258058861'>
+            <name>Login correct</name>
+            <title>Login correct</title>
+            <labels>
+                <label name='tms' value='TC0002_LoginManagement_e2e'/>
+                <label name='feature' value='Goal: The purpose of this test case is to verify the login and log out functionalities'/>
+                <label name='appVersion' value='&lt;not retrieved yet, available after calling navigateToHomePage()>'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:30 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258050370' status='passed' stop='1579258058221'>
+                    <name>Action: Set a valid username and password</name>
+                    <title>Action: Set a valid username and password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1579258058221' status='passed' stop='1579258058477'>
+                    <name>The home page is displayed</name>
+                    <title>The home page is displayed</title>
+                    <attachments/>
+                    <steps>
+                        <step start='1579258058474' status='passed' stop='1579258058475'>
+                            <name>The logged user is Administrator</name>
+                            <title>The logged user is Administrator</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                    </steps>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='defbdcec-960d-4267-b1bf-95470a1c22c2-attachment.png' type='image/png' size='28811'/>
+            </attachments>
+        </test-case>
+        <test-case start='1579258058861' status='passed' stop='1579258063574'>
+            <name>Login with an incorrect password</name>
+            <title>Login with an incorrect password</title>
+            <labels>
+                <label name='tms' value='TC0002_LoginManagement_e2e'/>
+                <label name='feature' value='Goal: The purpose of this test case is to verify the login and log out functionalities'/>
+                <label name='appVersion' value='Version: 1.4. (build 2012)'/>
+                <label name='tester' value='Systelab'/>
+                <label name='testExecutionDateTime' value='2020-1-17 11:47:38 AM'/>
+                <label name='browser' value='chrome'/>
+            </labels>
+            <parameters/>
+            <steps>
+                <step start='1579258058861' status='passed' stop='1579258061879'>
+                    <name>Action: Set an invalid username and password</name>
+                    <title>Action: Set an invalid username and password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1579258062390' status='passed' stop='1579258062391'>
+                    <name>Invalid username or password message is displayed</name>
+                    <title>Invalid username or password message is displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments>
+                <attachment title='Screenshot' source='3d836179-555b-45e7-8b9f-910cc876cb0b-attachment.png' type='image/png' size='764898'/>
+            </attachments>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
