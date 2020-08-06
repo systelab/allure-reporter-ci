@@ -1,7 +1,8 @@
+import * as puppeteer from "puppeteer";
 
 export class DropZone
 {
-    public static async uploadFile(page, filePath: string): Promise<void>
+    public static async uploadFile(page: puppeteer.Page, filePath: string): Promise<void>
     {
         const fileInputIdentifier = "upload-file-id";
         const dropZoneSelector = ".ngx-file-drop__drop-zone";
