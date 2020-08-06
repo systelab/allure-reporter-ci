@@ -1,5 +1,5 @@
 
-export class AllureDropZone
+export class DropZone
 {
     public static async uploadFile(page, filePath: string): Promise<void>
     {
