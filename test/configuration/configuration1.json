@@ -4,7 +4,7 @@
 		{
 			"name": "Project1",
 			"inputFolderPath": "test/input/json",
-			"outputFolderPath": "test/output/json",
+			"outputFolderPath": "test/output/json/subdir",
 			"saveAsPDF": true,
 			"uploadToJAMA": false
 		},

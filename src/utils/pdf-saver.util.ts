@@ -11,7 +11,7 @@ export class PDFSaver
     {
         if (!fs.existsSync(project.outputFolderPath))
         {
-            fs.mkdirSync(project.outputFolderPath);
+            fs.mkdirSync(project.outputFolderPath, { recursive: true });
         }
 
         const pdfFilepath: string = path.join(project.outputFolderPath, `${tmsId}.pdf`);
