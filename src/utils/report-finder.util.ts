@@ -14,7 +14,7 @@ export class ReportFinder
         {
             if (filepath.endsWith(".json") || filepath.endsWith(".xml"))
             {
-                reports.push({filepath});
+                reports.push({ filepath: path.join(project.inputFolderPath, filepath) });
             }
         }
 
