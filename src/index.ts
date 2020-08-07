@@ -1,5 +1,4 @@
 import * as puppeteer from "puppeteer";
-import * as path from "path"
 
 import { Configuration } from "@model";
 import { ConfigurationLoader, ReportFinder, PDFSaver } from "@utils";
@@ -10,7 +9,7 @@ describe("Generate Report", () =>
 {
     let browser: puppeteer.Browser;
     let page: puppeteer.Page;
-    let configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json");
+    const configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json"); //needs to be passed as variable when executing the script
 
     before(async () =>
     {
