@@ -31,7 +31,7 @@ describe("Generate Report", () =>
 
             if (project.saveAsPDF)
             {
-                it(`Save report as PDF`, async () =>
+                it("Save report as PDF", async () =>
                 {
                     const tmsId: string = await HtmlReport.getTitle(page);
                     await PDFSaver.execute(page, project, tmsId);
