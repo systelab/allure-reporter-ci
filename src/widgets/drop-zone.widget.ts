@@ -27,5 +27,14 @@ export class DropZone
         const fileInput = await page.$(`#${fileInputIdentifier}`);
         await fileInput.uploadFile(filePath);
         await page.waitFor(1000);
+
+        await page.evaluate((fileInputIdentifier) =>
+        {
+            const fileInputs = document.querySelectorAll(`#${fileInputIdentifier}`);
+            if (fileInputs.length > 0)
+            {
+                fileInputs[0].parentNode.removeChild(fileInputs[0]);
+            }
+        }, fileInputIdentifier);
     }
 }
