@@ -9,7 +9,7 @@ describe("Generate Report", () =>
 {
     let browser: puppeteer.Browser;
     let page: puppeteer.Page;
-    const configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json"); //needs to be passed as variable when executing the script
+    const configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json");
 
     before(async () =>
     {
@@ -44,5 +44,4 @@ describe("Generate Report", () =>
     {
         await browser.close();
     });
-})
-
+});
