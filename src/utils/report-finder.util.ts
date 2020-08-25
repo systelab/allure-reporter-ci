@@ -1,18 +1,19 @@
 import { Project, Report } from "@model";
 
 import * as fs from "fs";
-import * as path from "path"
+import * as path from "path";
 
 
 export class ReportFinder
 {
-    public static execute(project: Project) : Report[]
+    public static execute(project: Project): Report[]
     {
         const reports: Report[] = [];
         const inputReportFilepaths = this.getFolderFiles(project.inputFolderPath);
         for (const filepath of inputReportFilepaths)
         {
-            if (filepath.endsWith(".json") || filepath.endsWith(".xml"))
+            const matches = /[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}-.*\.(xml|json)/.exec(filepath);
+            if (matches)
             {
                 reports.push({ filepath: path.join(project.inputFolderPath, filepath) });
             }
