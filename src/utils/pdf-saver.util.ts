@@ -1,6 +1,6 @@
 import { Project } from "@model";
+import { FilesystemUtility } from "@utils";
 
-import * as fs from "fs";
 import * as path from "path";
 import * as puppeteer from "puppeteer";
 
@@ -9,12 +9,27 @@ export class PDFSaver
 {
     public static async execute(page: puppeteer.Page, project: Project, tmsId: string): Promise<void>
     {
-        if (!fs.existsSync(project.outputFolderPath))
+        if (!FilesystemUtility.exists(project.outputFolderPath))
         {
-            fs.mkdirSync(project.outputFolderPath, { recursive: true });
+            FilesystemUtility.createFolder(project.outputFolderPath);
         }
 
-        const pdfFilepath: string = path.join(project.outputFolderPath, `${tmsId}.pdf`);
+        let counter = 2;
+        let pdfFilepath: string = path.join(project.outputFolderPath, `${tmsId}.pdf`);
+        if (FilesystemUtility.exists(pdfFilepath))
+        {
+            pdfFilepath = path.join(project.outputFolderPath, `${tmsId}_${counter}.pdf`);
+            counter = counter + 1;
+        }
         await page.pdf({ path: pdfFilepath, format: "A4" });
     }
+
+    public static cleanOldOutputFiles(outputFolderPath)
+    {
+        if (FilesystemUtility.exists(outputFolderPath))
+        {
+            FilesystemUtility.deleteFolderContents(outputFolderPath);
+        }
+    }
+
 }

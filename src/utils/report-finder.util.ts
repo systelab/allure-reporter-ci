@@ -2,6 +2,7 @@ import { Project, Report } from "@model";
 
 import * as fs from "fs";
 import * as path from "path";
+import { FilesystemUtility } from "./filesystem.util";
 
 
 export class ReportFinder
@@ -10,12 +11,12 @@ export class ReportFinder
     {
         const reports: Report[] = [];
         const inputReportFilepaths = this.getFolderFiles(project.inputFolderPath);
-        for (const filepath of inputReportFilepaths)
+        for (const filePath of inputReportFilepaths)
         {
-            const matches = /[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}-.*\.(xml|json)/.exec(filepath);
-            if (matches)
+            const extension: string = FilesystemUtility.getExtension(filePath);
+            if (FilesystemUtility.fileNameHasUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
             {
-                reports.push({ filepath: path.join(project.inputFolderPath, filepath) });
+                reports.push({ filepath: path.join(project.inputFolderPath, filePath) });
             }
         }
 

@@ -1,9 +1,8 @@
 import * as puppeteer from "puppeteer";
 
 import { Configuration } from "@model";
-import { ConfigurationLoader, ReportFinder, PDFSaver } from "@utils";
+import { ConfigurationLoader, ReportFinder, PDFSaver, FilesystemUtility } from "@utils";
 import { ApplicationHeader, DropZone, HtmlReport } from "@widgets";
-
 
 describe("Generate Report", () =>
 {
@@ -20,6 +19,8 @@ describe("Generate Report", () =>
 
     for (const project of configuration.projects)
     {
+        PDFSaver.cleanOldOutputFiles(project.outputFolderPath);
+
         for (const inputReport of ReportFinder.execute(project))
         {
             it(`Load report file '${inputReport.filepath}'`, async () =>
@@ -33,7 +34,7 @@ describe("Generate Report", () =>
             {
                 it("Save report as PDF", async () =>
                 {
-                    const tmsId: string = await HtmlReport.getTitle(page);
+                    const tmsId: string = FilesystemUtility.getTestNameFromFileReport(inputReport.filepath);
                     await PDFSaver.execute(page, project, tmsId);
                 });
             }
