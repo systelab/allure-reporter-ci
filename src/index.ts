@@ -2,7 +2,7 @@ import * as puppeteer from "puppeteer";
 
 import { Configuration } from "@model";
 import { ConfigurationLoader, ReportFinder, PDFSaver, FilesystemUtility } from "@utils";
-import { ApplicationHeader, DropZone, HtmlReport } from "@widgets";
+import { ApplicationHeader, DropZone } from "@widgets";
 
 describe("Generate Report", () =>
 {

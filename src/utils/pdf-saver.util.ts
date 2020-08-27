@@ -24,7 +24,7 @@ export class PDFSaver
         await page.pdf({ path: pdfFilepath, format: "A4" });
     }
 
-    public static cleanOldOutputFiles(outputFolderPath)
+    public static cleanOldOutputFiles(outputFolderPath: string)
     {
         if (FilesystemUtility.exists(outputFolderPath))
         {
