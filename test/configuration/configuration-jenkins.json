@@ -1,0 +1,7 @@
+{
+    "allureReporterToolOptions": {
+        "allureInputFilesPath": "",
+        "allureOutputFilesPath": "",
+        "jenkinsMode": true
+    }
+}
