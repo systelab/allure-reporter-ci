@@ -1,7 +1,5 @@
-import * as path from "path";
-
 import { Project, Report } from "@model";
-import { FilesystemUtility } from "@utils";
+import { FilesystemUtility, WorkspaceUtility } from "@utils";
 
 
 export class ReportFinder
@@ -9,7 +7,7 @@ export class ReportFinder
     public static execute(project: Project): Report[]
     {
         const reports: Report[] = [];
-        const inputReportFilepaths = FilesystemUtility.getFolderFiles(project.inputFolderPath);
+        const inputReportFilepaths = FilesystemUtility.getFolderFiles(WorkspaceUtility.buildPath(project.inputFolderPath));
         for (const filePath of inputReportFilepaths)
         {
             if (this.hasFileNameUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
