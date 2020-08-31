@@ -1,4 +1,4 @@
-var DomParser = require('dom-parser');
+import * as DomParser from "dom-parser";
 
 import { ReportContent, Report } from "@model";
 import { FilesystemUtility } from "@utils";
