@@ -10,48 +10,43 @@ export class ReportParser
     {
         if (FilesystemUtility.isJSONFile(report.filepath))
         {
-            return this.parseJSON(report.filepath);
+            return this.parseJSON(report);
         }
         else if (FilesystemUtility.isXMLFile(report.filepath))
         {
-            return this.parseXML(report.filepath);
+            return this.parseXML(report);
         }
 
         return null;
     }
 
-    private static parseJSON(filepath: string): ReportContent
+    private static parseJSON(report: Report): ReportContent
     {
-        const fileContent = FilesystemUtility.readFile(filepath, "UTF8");
-
-        let fileJSON;
         try
         {
-            fileJSON = JSON.parse(fileContent);
+            const fileContent = this.readReportContent(report);
+            const jsonDocument = JSON.parse(fileContent);
+
+            const name: string = jsonDocument.name;
+            const tmsId: string = jsonDocument.links[0].name;
+            if (!name || !tmsId)
+            {
+                return null;
+            }
+
+            return { name, tmsId };
         }
         catch (e)
         {
             return null;
         }
-
-        if (!fileJSON.name)
-        {
-            return;
-        }
-
-        if (!fileJSON.hasOwnProperty("links") || fileJSON.links.length === 0 || !fileJSON.links[0].hasOwnProperty("name"))
-        {
-            return;
-        }
-
-        return { name: fileJSON.name, tmsId: fileJSON.links[0].name };
     }
 
-    private static parseXML(filepath: string): ReportContent
+    private static parseXML(report: Report): ReportContent
     {
         try
         {
-            const fileContent = FilesystemUtility.readFile(filepath, "UTF8");
+            const fileContent = this.readReportContent(report);
             const parser = new DomParser();
             const xmlDoc = parser.parseFromString(fileContent);
 
@@ -82,5 +77,10 @@ export class ReportParser
         }
 
         return null;
+    }
+
+    private static readReportContent(report: Report): string
+    {
+        return FilesystemUtility.readFile(report.filepath, "UTF8");
     }
 }
