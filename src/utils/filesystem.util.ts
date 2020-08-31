@@ -4,6 +4,11 @@ import * as path from "path";
 
 export class FilesystemUtility
 {
+    public static joinPaths(...paths: string[]): string
+    {
+        return path.join(...paths);
+    }
+
     public static readFile(filePath: string, encoding = null): string
     {
         return fs.readFileSync(filePath, encoding).toString();
@@ -84,5 +89,33 @@ export class FilesystemUtility
         {
             return matches[1].toLowerCase();
         }
+    }
+
+    public static getFolderFiles(folderPath: string, recursive = false): string[]
+    {
+        const files = [];
+        if (fs.existsSync(folderPath))
+        {
+            const folderEntries = fs.readdirSync(folderPath);
+            for (const folderEntry of folderEntries)
+            {
+                const folderEntryPath = `${folderPath}/${folderEntry}`;
+                if (fs.lstatSync(folderEntryPath).isDirectory())
+                {
+                    if (recursive)
+                    {
+                        const subfolderFiles = this.getFolderFiles(folderEntryPath);
+                        const sufolderFilesRelativePaths = subfolderFiles.map((p) => path.join(folderEntry, p) );
+                        files.push(...sufolderFilesRelativePaths);
+                    }
+                }
+                else
+                {
+                    files.push(folderEntry);
+                }
+            }
+        }
+
+        return files;
     }
 }
