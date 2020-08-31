@@ -15,7 +15,12 @@ export class ConfigurationLoader
 
     public static loadFromFilepath(filepath: string): Configuration
     {
+        console.log(`Configuration file: ${filepath}`);
         const fileContent = FilesystemUtility.readFile(filepath);
-        return JSON.parse(fileContent);
+
+        const configuration: Configuration = JSON.parse(fileContent);
+        console.log(`Loaded configuration: ${JSON.stringify(configuration)}`);
+
+        return configuration;
     }
 }
