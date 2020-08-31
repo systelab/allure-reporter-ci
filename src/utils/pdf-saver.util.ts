@@ -15,7 +15,19 @@ export class PDFSaver
         }
 
         const pdfFilepath: string = this.getUniquePDFFilepath(outputFolderPath, inputReportContent);
-        await page.pdf({ path: pdfFilepath, format: "A4" });
+
+        await page.pdf({ path: pdfFilepath,
+                         displayHeaderFooter: true,
+                         headerTemplate: this.getPageHeaderTemplate(),
+                         footerTemplate: this.getPageFooterTemplate(),
+                         format: "A4",
+                         preferCSSPageSize: true,
+                         margin: {
+                            top: 40,
+                            bottom: 40,
+                            left: 35,
+                            right: 35
+                         } });
     }
 
     private static getUniquePDFFilepath(folderPath: string, inputReportContent: ReportContent): string
@@ -31,5 +43,79 @@ export class PDFSaver
         }
 
         return pdfFilepath;
+    }
+
+    private static getPageHeaderTemplate()
+    {
+        let headerTemplate =
+               "<style>" +
+               "    .pageHeader {" +
+               "        display: flex;" +
+               "        flex-direction: row;" +
+               "        align-items: center;" +
+               "        justify-content: space-between;" +
+               "        width: 450px;" +
+               "        height: 15px;" +
+               "        margin-left: 30px;" +
+               "        margin-right: 30px;" +
+               "        font-family: Arial, Helvetica, sans-serif;" +
+               "        font-size: 8px;" +
+               "    }" +
+               "</style>" +
+               "<div class='pageHeader'>" +
+               "    <div>$$DATE$$</div>" +
+               "    <div>Allure Reporter</div>" +
+               "</div>";
+
+        headerTemplate = headerTemplate.replace("$$DATE$$", this.getCurrrentDate());
+
+        return headerTemplate;
+    }
+
+    private static getPageFooterTemplate()
+    {
+        return "<style>" +
+               "    .pageFooter {" +
+               "        display: flex;" +
+               "        flex-direction: row;" +
+               "        align-items: center;" +
+               "        justify-content: space-between;" +
+               "        width: 100%;" +
+               "        height: 15px;" +
+               "        margin-left: 30px;" +
+               "        margin-right: 30px;" +
+               "        font-family: Arial, Helvetica, sans-serif;" +
+               "        font-size: 8px;" +
+               "    }" +
+               "    .pageNumberBlock {" +
+               "        display: flex;" +
+               "        flex-direction: row;" +
+               "        justify-content: center;" +
+               "        align-items: center;" +
+               "        font-family: Arial, Helvetica, sans-serif;" +
+               "        font-size: 8px;" +
+               "    }" +
+               "</style>" +
+               "<div class='pageFooter'>" +
+               "    <div>https://systelab.github.io/allure-reporter/</div>" +
+               "    <div class='pageNumberBlock'>" +
+               "        <div class='pageNumber'></div>" +
+               "        <div>/</div>" +
+               "        <div class='totalPages'></div>" +
+               "    </div>" +
+               "</div>";
+    }
+
+    private static getCurrrentDate(): string
+    {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, "0");
+        const monthIndex = today.getMonth();
+        const year = today.getFullYear();
+
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const monthName = monthNames[monthIndex];
+
+        return `${day}-${monthName}-${year}`;
     }
 }
