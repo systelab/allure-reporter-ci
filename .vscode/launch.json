@@ -12,7 +12,11 @@
             "protocol": "inspector",
             "console": "internalConsole",
             "internalConsoleOptions": "neverOpen",
-            "outputCapture": "std"
+            "outputCapture": "std",
+            "env":
+            {
+                "ALLURE_REPORTER_CI_CONFIGURATION": "test/configuration/configuration-xml.json"
+            }
         }
     ]
 }

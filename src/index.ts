@@ -8,7 +8,7 @@ describe("Generate Report", () =>
 {
     let browser: puppeteer.Browser;
     let page: puppeteer.Page;
-    const configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json");
+    const configuration: Configuration = ConfigurationLoader.load();
 
     before(async () =>
     {
