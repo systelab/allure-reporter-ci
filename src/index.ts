@@ -1,16 +1,14 @@
 import * as puppeteer from "puppeteer";
-import * as path from "path"
 
 import { Configuration } from "@model";
-import { ConfigurationLoader, ReportFinder, PDFSaver } from "@utils";
-import { ApplicationHeader, DropZone, HtmlReport } from "@widgets";
-
+import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceCleaner } from "@utils";
+import { ApplicationHeader, DropZone } from "@widgets";
 
 describe("Generate Report", () =>
 {
     let browser: puppeteer.Browser;
     let page: puppeteer.Page;
-    let configuration: Configuration = ConfigurationLoader.load("test/configuration/configuration1.json");
+    const configuration: Configuration = ConfigurationLoader.load();
 
     before(async () =>
     {
@@ -21,22 +19,27 @@ describe("Generate Report", () =>
 
     for (const project of configuration.projects)
     {
+        WorkspaceCleaner.cleanOldOutputFiles(project);
+
         for (const inputReport of ReportFinder.execute(project))
         {
-            it(`Load report file '${inputReport.filepath}'`, async () =>
+            const inputReportContent = ReportParser.execute(inputReport);
+            if (inputReportContent)
             {
-                await page.reload();
-                await DropZone.uploadFile(page, inputReport.filepath);
-                await ApplicationHeader.hideSummary(page);
-            });
-
-            if (project.saveAsPDF)
-            {
-                it(`Save report as PDF`, async () =>
+                it(`Load report file '${inputReport.filepath}'`, async () =>
                 {
-                    const tmsId: string = await HtmlReport.getTitle(page);
-                    await PDFSaver.execute(page, project, tmsId);
+                    await page.reload();
+                    await DropZone.uploadFile(page, inputReport.filepath);
+                    await ApplicationHeader.hideSummary(page);
                 });
+
+                if (project.saveAsPDF)
+                {
+                    it("Save report as PDF", async () =>
+                    {
+                        await PDFSaver.execute(page, project, inputReportContent);
+                    });
+                }
             }
         }
     }
@@ -45,5 +48,4 @@ describe("Generate Report", () =>
     {
         await browser.close();
     });
-})
-
+});

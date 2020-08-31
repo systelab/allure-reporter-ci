@@ -2,16 +2,9 @@
 	"website": "https://systelab.github.io/allure-reporter/",
 	"projects": [
 		{
-			"name": "Project1",
+			"name": "ProjectJSON",
 			"inputFolderPath": "test/input/json",
 			"outputFolderPath": "test/output/json/subdir",
-			"saveAsPDF": true,
-			"uploadToJAMA": false
-		},
-		{
-			"name": "Project2",
-			"inputFolderPath": "test/input/xml",
-			"outputFolderPath": "test/output/xml",
 			"saveAsPDF": true,
 			"uploadToJAMA": false
 		}

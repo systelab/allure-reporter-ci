@@ -1,20 +1,44 @@
-import { Project } from "@model";
+import { Project, ReportContent } from "@model";
+import { FilesystemUtility } from "@utils";
 
-import * as fs from "fs";
-import * as path from "path"
+import * as path from "path";
 import * as puppeteer from "puppeteer";
 
 
 export class PDFSaver
 {
-    public static async execute(page: puppeteer.Page, project: Project, tmsId: string) : Promise<void>
+    public static async execute(page: puppeteer.Page, project: Project, inputReportContent: ReportContent): Promise<void>
     {
-        if (!fs.existsSync(project.outputFolderPath))
+        if (!FilesystemUtility.exists(project.outputFolderPath))
         {
-            fs.mkdirSync(project.outputFolderPath, { recursive: true });
+            FilesystemUtility.createFolder(project.outputFolderPath);
         }
 
-        const pdfFilepath: string = path.join(project.outputFolderPath, `${tmsId}.pdf`);
+        const pdfFilepath: string = this.getUniquePDFFilepath(project.outputFolderPath, inputReportContent);
         await page.pdf({ path: pdfFilepath, format: "A4" });
     }
+
+    public static cleanOldOutputFiles(outputFolderPath: string)
+    {
+        if (FilesystemUtility.exists(outputFolderPath))
+        {
+            FilesystemUtility.deleteFolderContents(outputFolderPath);
+        }
+    }
+
+    private static getUniquePDFFilepath(folderPath: string, inputReportContent: ReportContent): string
+    {
+        const filename: string = `${inputReportContent.tmsId}_${inputReportContent.name}`.replace(/[/\\ ]/g, "_");
+
+        let counter = 2;
+        let pdfFilepath: string = path.join(folderPath, `${filename}.pdf`);
+        while (FilesystemUtility.exists(pdfFilepath))
+        {
+            pdfFilepath = path.join(folderPath, `${filename}_${counter}.pdf`);
+            counter++;
+        }
+
+        return pdfFilepath;
+    }
+
 }
