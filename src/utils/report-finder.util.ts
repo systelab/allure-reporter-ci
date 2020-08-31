@@ -1,8 +1,8 @@
-import { Project, Report } from "@model";
-
 import * as fs from "fs";
 import * as path from "path";
-import { FilesystemUtility } from "./filesystem.util";
+
+import { Project, Report } from "@model";
+import { FilesystemUtility } from "@utils";
 
 
 export class ReportFinder
@@ -13,8 +13,7 @@ export class ReportFinder
         const inputReportFilepaths = this.getFolderFiles(project.inputFolderPath);
         for (const filePath of inputReportFilepaths)
         {
-            const extension: string = FilesystemUtility.getExtension(filePath);
-            if (FilesystemUtility.fileNameHasUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
+            if (this.hasFileNameUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
             {
                 reports.push({ filepath: path.join(project.inputFolderPath, filePath) });
             }
@@ -26,7 +25,7 @@ export class ReportFinder
     private static getFolderFiles(folderPath: string, recursive = false): string[]
     {
         const files = [];
-        if (fs.existsSync(folderPath))
+        if (FilesystemUtility.exists(folderPath))
         {
             const folderEntries = fs.readdirSync(folderPath);
             for (const folderEntry of folderEntries)
@@ -49,5 +48,15 @@ export class ReportFinder
         }
 
         return files;
+    }
+
+    private static hasFileNameUUID(filePath: string): boolean
+    {
+        const match = /([\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}.+)\./.exec(filePath);
+        if (match)
+        {
+            return true;
+        }
+        return false;
     }
 }

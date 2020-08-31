@@ -7,20 +7,14 @@ import * as puppeteer from "puppeteer";
 
 export class PDFSaver
 {
-    public static async execute(page: puppeteer.Page, project: Project, tmsId: string): Promise<void>
+    public static async execute(page: puppeteer.Page, project: Project, filename: string): Promise<void>
     {
         if (!FilesystemUtility.exists(project.outputFolderPath))
         {
             FilesystemUtility.createFolder(project.outputFolderPath);
         }
 
-        let counter = 2;
-        let pdfFilepath: string = path.join(project.outputFolderPath, `${tmsId}.pdf`);
-        if (FilesystemUtility.exists(pdfFilepath))
-        {
-            pdfFilepath = path.join(project.outputFolderPath, `${tmsId}_${counter}.pdf`);
-            counter = counter + 1;
-        }
+        const pdfFilepath: string = this.getUniquePDFFilepath(project.outputFolderPath, filename);
         await page.pdf({ path: pdfFilepath, format: "A4" });
     }
 
@@ -30,6 +24,19 @@ export class PDFSaver
         {
             FilesystemUtility.deleteFolderContents(outputFolderPath);
         }
+    }
+
+    private static getUniquePDFFilepath(folderPath: string, filename: string): string
+    {
+        let counter = 2;
+        let pdfFilepath: string = path.join(folderPath, `${filename}.pdf`);
+        while (FilesystemUtility.exists(pdfFilepath))
+        {
+            pdfFilepath = path.join(folderPath, `${filename}_${counter}.pdf`);
+            counter++;
+        }
+
+        return pdfFilepath;
     }
 
 }

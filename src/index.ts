@@ -1,7 +1,7 @@
 import * as puppeteer from "puppeteer";
 
 import { Configuration } from "@model";
-import { ConfigurationLoader, ReportFinder, PDFSaver, FilesystemUtility } from "@utils";
+import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceCleaner } from "@utils";
 import { ApplicationHeader, DropZone } from "@widgets";
 
 describe("Generate Report", () =>
@@ -19,24 +19,28 @@ describe("Generate Report", () =>
 
     for (const project of configuration.projects)
     {
-        PDFSaver.cleanOldOutputFiles(project.outputFolderPath);
+        WorkspaceCleaner.cleanOldOutputFiles(project);
 
         for (const inputReport of ReportFinder.execute(project))
         {
-            it(`Load report file '${inputReport.filepath}'`, async () =>
+            const inputReportContent = ReportParser.execute(inputReport);
+            if (inputReportContent)
             {
-                await page.reload();
-                await DropZone.uploadFile(page, inputReport.filepath);
-                await ApplicationHeader.hideSummary(page);
-            });
-
-            if (project.saveAsPDF)
-            {
-                it("Save report as PDF", async () =>
+                it(`Load report file '${inputReport.filepath}'`, async () =>
                 {
-                    const tmsId: string = FilesystemUtility.getTestNameFromFileReport(inputReport.filepath);
-                    await PDFSaver.execute(page, project, tmsId);
+                    await page.reload();
+                    await DropZone.uploadFile(page, inputReport.filepath);
+                    await ApplicationHeader.hideSummary(page);
                 });
+
+                if (project.saveAsPDF)
+                {
+                    it("Save report as PDF", async () =>
+                    {
+                        const filename: string = `${inputReportContent.tmsId}_${inputReportContent.name}`;
+                        await PDFSaver.execute(page, project, filename);
+                    });
+                }
             }
         }
     }
