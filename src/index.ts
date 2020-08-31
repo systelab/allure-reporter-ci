@@ -4,6 +4,7 @@ import { Configuration } from "@model";
 import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceCleaner } from "@utils";
 import { ApplicationHeader, DropZone } from "@widgets";
 
+
 describe("Generate Report", () =>
 {
     let browser: puppeteer.Browser;
