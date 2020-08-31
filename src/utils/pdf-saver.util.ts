@@ -1,19 +1,20 @@
 import * as puppeteer from "puppeteer";
 
 import { Project, ReportContent } from "@model";
-import { FilesystemUtility } from "@utils";
+import { FilesystemUtility, WorkspaceUtility } from "@utils";
 
 
 export class PDFSaver
 {
     public static async execute(page: puppeteer.Page, project: Project, inputReportContent: ReportContent): Promise<void>
     {
-        if (!FilesystemUtility.exists(project.outputFolderPath))
+        const outputFolderPath = WorkspaceUtility.buildPath(project.outputFolderPath);
+        if (!FilesystemUtility.exists(outputFolderPath))
         {
-            FilesystemUtility.createFolder(project.outputFolderPath);
+            FilesystemUtility.createFolder(outputFolderPath);
         }
 
-        const pdfFilepath: string = this.getUniquePDFFilepath(project.outputFolderPath, inputReportContent);
+        const pdfFilepath: string = this.getUniquePDFFilepath(outputFolderPath, inputReportContent);
         await page.pdf({ path: pdfFilepath, format: "A4" });
     }
 

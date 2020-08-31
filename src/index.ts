@@ -30,7 +30,7 @@ describe("Generate Report", () =>
                 it(`Load report file '${inputReport.filepath}'`, async () =>
                 {
                     await page.reload();
-                    await DropZone.uploadFile(page, inputReport.filepath);
+                    await DropZone.uploadFile(page, WorkspaceUtility.buildPath(inputReport.filepath));
                     await ApplicationHeader.hideSummary(page);
                 });
 
