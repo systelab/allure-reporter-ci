@@ -15,7 +15,8 @@
             "outputCapture": "std",
             "env":
             {
-                "ALLURE_REPORTER_CI_CONFIGURATION": "test/configuration/configuration-json.json"
+                "ALLURE_REPORTER_CI_WORKSPACE": "",
+                "ALLURE_REPORTER_CI_CONFIG_FILE": "test/configuration/configuration-all.json"
             }
         }
     ]

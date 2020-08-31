@@ -1,19 +1,21 @@
 import { Configuration } from "@model";
-
-import * as fs from "fs";
+import { FilesystemUtility } from "@utils";
 
 
 export class ConfigurationLoader
 {
     public static load(): Configuration
     {
+        const workspace = process.env.ALLURE_REPORTER_CI_WORKSPACE || "";
         const filepath = process.env.ALLURE_REPORTER_CI_CONFIGURATION || "test/configuration/configuration-all.json";
-        return this.loadFromFilepath(filepath);
+        const fullFilepath = FilesystemUtility.joinPaths(workspace, filepath);
+
+        return this.loadFromFilepath(fullFilepath);
     }
 
     public static loadFromFilepath(filepath: string): Configuration
     {
-        const fileContent = fs.readFileSync(filepath).toString();
+        const fileContent = FilesystemUtility.readFile(filepath);
         return JSON.parse(fileContent);
     }
 }
