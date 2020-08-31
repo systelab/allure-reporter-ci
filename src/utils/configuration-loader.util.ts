@@ -19,6 +19,7 @@ export class ConfigurationLoader
 
         const configuration: Configuration = JSON.parse(fileContent);
         console.log(`Loaded configuration: ${JSON.stringify(configuration)}`);
+        console.log();
 
         return configuration;
     }

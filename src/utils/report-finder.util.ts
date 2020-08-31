@@ -6,8 +6,11 @@ export class ReportFinder
 {
     public static execute(project: Project): Report[]
     {
+        const projectInputFolder = WorkspaceUtility.buildPath(project.inputFolderPath);
+        console.log(`Searching for Allure reports under '${projectInputFolder}'...`);
+
         const reports: Report[] = [];
-        const inputReportFilepaths = FilesystemUtility.getFolderFiles(WorkspaceUtility.buildPath(project.inputFolderPath));
+        const inputReportFilepaths = FilesystemUtility.getFolderFiles(projectInputFolder);
         for (const filePath of inputReportFilepaths)
         {
             if (this.hasFileNameUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
@@ -15,6 +18,9 @@ export class ReportFinder
                 reports.push({ filepath: FilesystemUtility.joinPaths(project.inputFolderPath, filePath) });
             }
         }
+
+        console.log(`${reports.length} report(s) found.`);
+        console.log();
 
         return reports;
     }
