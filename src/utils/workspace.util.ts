@@ -2,7 +2,7 @@ import { Project } from "@model";
 import { FilesystemUtility } from "@utils";
 
 
-export class WorkspaceCleaner
+export class WorkspaceUtility
 {
     public static cleanOldOutputFiles(project: Project)
     {

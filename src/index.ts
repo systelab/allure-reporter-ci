@@ -1,7 +1,7 @@
 import * as puppeteer from "puppeteer";
 
 import { Configuration } from "@model";
-import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceCleaner } from "@utils";
+import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceUtility } from "@utils";
 import { ApplicationHeader, DropZone } from "@widgets";
 
 
@@ -20,7 +20,7 @@ describe("Generate Report", () =>
 
     for (const project of configuration.projects)
     {
-        WorkspaceCleaner.cleanOldOutputFiles(project);
+        WorkspaceUtility.cleanOldOutputFiles(project);
 
         for (const inputReport of ReportFinder.execute(project))
         {
