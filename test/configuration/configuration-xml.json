@@ -4,7 +4,7 @@
 		{
 			"name": "ProjectXML",
 			"inputFolderPath": "test/input/xml",
-			"outputFolderPath": "test/output/xml/subdir",
+			"outputFolderPath": "test/output/xml",
 			"saveAsPDF": true,
 			"uploadToJAMA": false
 		}

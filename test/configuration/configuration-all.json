@@ -4,14 +4,14 @@
 		{
 			"name": "Project1",
 			"inputFolderPath": "test/input/json",
-			"outputFolderPath": "test/output/json/subdir",
+			"outputFolderPath": "test/output/json",
 			"saveAsPDF": true,
 			"uploadToJAMA": false
 		},
 		{
 			"name": "Project2",
 			"inputFolderPath": "test/input/xml",
-			"outputFolderPath": "test/output/xml/subdir",
+			"outputFolderPath": "test/output/xml",
 			"saveAsPDF": true,
 			"uploadToJAMA": false
 		}
