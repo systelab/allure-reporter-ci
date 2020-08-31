@@ -1,7 +1,7 @@
 import * as DomParser from "dom-parser";
 
 import { ReportContent, Report } from "@model";
-import { FilesystemUtility } from "@utils";
+import { FilesystemUtility, WorkspaceUtility } from "@utils";
 
 
 export class ReportParser
@@ -81,6 +81,7 @@ export class ReportParser
 
     private static readReportContent(report: Report): string
     {
-        return FilesystemUtility.readFile(report.filepath, "UTF8");
+        const reportFilepath = WorkspaceUtility.buildPath(report.filepath);
+        return FilesystemUtility.readFile(reportFilepath, "UTF8");
     }
 }
