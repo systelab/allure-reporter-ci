@@ -4,8 +4,7 @@
     "description": "Scripts to use AllureReporter tool from a continuous integration environment",
     "main": "index.js",
     "scripts": {
-        "report": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --spec src/index.ts --config .mocharc.json",
-        "report-jenkins": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --spec src/index.ts --config .mocharc-jenkins.json"
+        "report": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --spec src/index.ts --config .mocharc.json"
     },
     "keywords": [],
     "author": "CSW",

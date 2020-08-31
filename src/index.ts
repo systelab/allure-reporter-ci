@@ -37,8 +37,7 @@ describe("Generate Report", () =>
                 {
                     it("Save report as PDF", async () =>
                     {
-                        const filename: string = `${inputReportContent.tmsId}_${inputReportContent.name}`;
-                        await PDFSaver.execute(page, project, filename);
+                        await PDFSaver.execute(page, project, inputReportContent);
                     });
                 }
             }
