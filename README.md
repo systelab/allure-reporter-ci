@@ -1,36 +1,69 @@
 # Continuous Integration scripts for Allure Reporter
-Script to automate use of Allure Reporter on continuous integration
+
+Script to automate use of Allure Reporter on continuous integration.
+
+
+## Supported features
+
+* Batch PDF generation of test reports 
+* Automated upload of test results to JAMA contour (`Not available yet`)
+
 
 ## Setup
 
+### Prerequisites
+
+- [Git](https://git-scm.com/)
+- [NodeJS](https://nodejs.org/en/)
+
 ### Installation
 
-This is a tool designed to be used as stand alone. The installation should be done by installing NPM dependencies under a clone of this repository:
+* Clone this repository by executing the following command:
+ 
+```bash
+> git clone https://github.com/systelab/cpp-allure-reporter-ci
+```
+
+* Install NPM dependencies by running:
 
 ```bash
-npm install
+> npm install
 ```
 
 ## Usage
 
-The goal of that tool is to recover all the reports generated from the Automated Test Cases to be used on allure reporer and saving it as PDFs format. 
+### Script Execution
 
-> The accepted files are .xml and .json and with UUID format.
+Prior to the execution of this script, a JSON configuration file needs to be created and the following environment variables need to be defined:
 
-Giving the input folder as a generated Allure Reports and the output follder as a result pdf after using the Allure Reporter.
+* *ALLURE_REPORTER_CI_WORKSPACE*: Absolute path of the workspace with the Allure test reports to be processed
+* *ALLURE_REPORTER_CI_CONFIG_FILE*: Relative path (regards the workspace path) of the JSON configuration file to be used
 
-## Configuration
+Finally, this script is executed by running the following command:
 
-The configuration of the input and output folder is performed into the configuration folder inside the project where configuration files are defined.
+```bash
+npm run report
+```
+
+### Configuration File
+
+The Allure test reports to be processed by this script as well as the actions to be performed with them are defined using a JSON configuration file. This is an example of this file:
 
 ```json
 {
 	"website": "https://systelab.github.io/allure-reporter/",
 	"projects": [
 		{
-			"name": "ProjectJSON",
-			"inputFolderPath": "test/input/json",
-			"outputFolderPath": "test/output/json",
+			"name": "FirstProject",
+			"inputFolderPath": "project1/input",
+			"outputFolderPath": "project1/output",
+			"saveAsPDF": true,
+			"uploadToJAMA": false
+		},
+		{
+			"name": "SecondProject",
+			"inputFolderPath": "project2/input",
+			"outputFolderPath": "project2/output",
 			"saveAsPDF": true,
 			"uploadToJAMA": false
 		}
@@ -38,15 +71,13 @@ The configuration of the input and output folder is performed into the configura
 }
 ```
 
-## Execution
+See [test/configuration](https://github.com/systelab/allure-reporter-ci/tree/master/test/configuration) folder for more complete examples of configuration files.
 
-To execute this tool, there are 2 ENV variables that need to be defined:
 
-ALLURE_REPORTER_CI_WORKSPACE path where project/workspace is installed
-ALLURE_REPORTER_CI_CONFIG_FILE path of the configuration file (relative to the provided workspace)
+### Batch PDF generation of test reports
 
-Then, execute the following command to generate the test reports:
+Giving the input folder as a generated Allure Reports and the output follder as a result pdf after using the Allure Reporter.
 
-```bash
-npm run test
-```
+### Automated upload of test results to JAMA contour
+
+`TBD`
