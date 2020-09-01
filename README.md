@@ -1,4 +1,4 @@
-# Continuous Integration scripts for Allure Reporter
+# Continuous Integration Script for Allure Reporter
 
 Script to automate use of Allure Reporter on continuous integration environments.
 
@@ -71,6 +71,9 @@ The Allure test reports to be processed by this script as well as the actions to
 
 See [test/configuration](https://github.com/systelab/allure-reporter-ci/tree/master/test/configuration) folder for more complete examples of configuration files.
 
+### AllureReporter tool website
+
+The URL where the AllureReporter tool is deployed can be defined by means of the `website` top-level attribute of the JSON configuration file.
 
 ### Input Allure reports
 
