@@ -18,15 +18,11 @@ Script to automate use of Allure Reporter on continuous integration.
 
 ### Installation
 
-* Clone this repository by executing the following command:
- 
+* Clone this repository
+* Install NPM dependencies
+
 ```bash
 > git clone https://github.com/systelab/cpp-allure-reporter-ci
-```
-
-* Install NPM dependencies by running:
-
-```bash
 > npm install
 ```
 
@@ -34,10 +30,10 @@ Script to automate use of Allure Reporter on continuous integration.
 
 ### Script Execution
 
-Prior to the execution of this script, a JSON configuration file needs to be created and the following environment variables need to be defined:
+Prior to the execution of this script, a JSON configuration file needs to be created and the following environment variables need to be set:
 
-* *ALLURE_REPORTER_CI_WORKSPACE*: Absolute path of the workspace with the Allure test reports to be processed
-* *ALLURE_REPORTER_CI_CONFIG_FILE*: Relative path (regards the workspace path) of the JSON configuration file to be used
+* *ALLURE_REPORTER_CI_WORKSPACE*: Absolute path of the workspace where the Allure test reports to be processed are stored.
+* *ALLURE_REPORTER_CI_CONFIG_FILE*: Relative path (regards to the workspace path) where the JSON configuration file is stored.
 
 Finally, this script is executed by running the following command:
 
@@ -47,7 +43,7 @@ npm run report
 
 ### Configuration File
 
-The Allure test reports to be processed by this script as well as the actions to be performed with them are defined using a JSON configuration file. This is an example of this file:
+The Allure test reports to be processed by this script as well as the actions to be performed with them are defined using a JSON configuration file. See the following example:
 
 ```json
 {
@@ -71,12 +67,20 @@ The Allure test reports to be processed by this script as well as the actions to
 }
 ```
 
+> Provided paths should be relative to the workspace folder defined using *ALLURE_REPORTER_CI_WORKSPACE* environment variable.
+
 See [test/configuration](https://github.com/systelab/allure-reporter-ci/tree/master/test/configuration) folder for more complete examples of configuration files.
+
+
+### Input Allure reports
+
+This script can be used with any Allure report that can be read by the AllureReporter tool. See [allure-reporter](https://github.com/systelab/allure-reporter) repository for details. 
 
 
 ### Batch PDF generation of test reports
 
-Giving the input folder as a generated Allure Reports and the output follder as a result pdf after using the Allure Reporter.
+This feature is enabled by setting to true the `saveAsPDF` attribute of the projects defined into the configuration file. Then, the script will load all the allure reports found under the `inputFolderPath` folder and generate a PDF file for each one. These PDFs will be left on the folder defined by the `outputFolderPath` attribute.
+
 
 ### Automated upload of test results to JAMA contour
 
