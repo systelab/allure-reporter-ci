@@ -1,6 +1,6 @@
 # Continuous Integration scripts for Allure Reporter
 
-Script to automate use of Allure Reporter on continuous integration.
+Script to automate use of Allure Reporter on continuous integration environments.
 
 
 ## Supported features
@@ -43,7 +43,7 @@ npm run report
 
 ### Configuration File
 
-The Allure test reports to be processed by this script as well as the actions to be performed with them are defined using a JSON configuration file. See the following example:
+The Allure test reports to be processed by this script as well as the actions to be performed with them are defined using a JSON configuration file like the following one:
 
 ```json
 {
@@ -74,12 +74,12 @@ See [test/configuration](https://github.com/systelab/allure-reporter-ci/tree/mas
 
 ### Input Allure reports
 
-This script can be used with any Allure report that can be read by the AllureReporter tool. See [allure-reporter](https://github.com/systelab/allure-reporter) repository for details. 
+This script can be used with any [Allure](http://allure.qatools.ru/) report that can be read by the AllureReporter tool. See [allure-reporter](https://github.com/systelab/allure-reporter) repository for details. 
 
 
 ### Batch PDF generation of test reports
 
-This feature is enabled by setting to true the `saveAsPDF` attribute of the projects defined into the configuration file. Then, the script will load all the allure reports found under the `inputFolderPath` folder and generate a PDF file for each one. These PDFs will be left on the folder defined by the `outputFolderPath` attribute.
+This feature is enabled by setting to true the `saveAsPDF` attribute of the projects defined into the configuration file. Then, the script will load all the Allure reports found under the `inputFolderPath` folder and generate a PDF file for each one. These PDFs will be left on the folder defined by the `outputFolderPath` attribute.
 
 
 ### Automated upload of test results to JAMA contour
