@@ -1,6 +1,6 @@
 import * as puppeteer from "puppeteer";
 
-import { Configuration } from "@model";
+import { Configuration, ReportContent } from "@model";
 import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceUtility } from "@utils";
 import { ApplicationHeader, DropZone } from "@widgets";
 
@@ -24,10 +24,10 @@ describe("Generate Report", () =>
 
         for (const inputReport of ReportFinder.execute(project))
         {
-            const inputReportContent = ReportParser.execute(inputReport);
+            const inputReportContent: ReportContent = ReportParser.execute(inputReport);
             if (inputReportContent)
             {
-                it(`Load report file '${inputReport.filepath}'`, async () =>
+                it(`Load report for ${inputReportContent.tmsId} (${project.name}) test`, async () =>
                 {
                     await page.reload();
                     await DropZone.uploadFile(page, WorkspaceUtility.buildPath(inputReport.filepath));
@@ -36,9 +36,17 @@ describe("Generate Report", () =>
 
                 if (project.saveAsPDF)
                 {
-                    it("Save report as PDF", async () =>
+                    it(`Save report for ${inputReportContent.tmsId} (${project.name}) test as PDF`, async () =>
                     {
                         await PDFSaver.execute(page, project, inputReportContent);
+                    });
+                }
+
+                if (project.uploadToJAMA)
+                {
+                    it(`Upload results for ${inputReportContent.tmsId} (${project.name}) test to JAMA`, async () =>
+                    {
+                        // TODO
                     });
                 }
             }
