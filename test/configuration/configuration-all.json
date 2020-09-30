@@ -1,19 +1,20 @@
 {
-	"website": "https://systelab.github.io/allure-reporter/",
-	"projects": [
-		{
-			"name": "Project1",
-			"inputFolderPath": "test/input/json",
-			"outputFolderPath": "test/output/json",
-			"saveAsPDF": true,
-			"uploadToJAMA": false
-		},
-		{
-			"name": "Project2",
-			"inputFolderPath": "test/input/xml",
-			"outputFolderPath": "test/output/xml",
-			"saveAsPDF": true,
-			"uploadToJAMA": false
-		}
-	]
+    "website": "https://systelab.github.io/allure-reporter/",
+    "jamaURL": "https://snowjamaserver.systelab.net/rest/latest",
+    "projects": [
+        {
+            "name": "Project1",
+            "inputFolderPath": "test/input/json",
+            "outputFolderPath": "test/output/json",
+            "saveAsPDF": true,
+            "uploadToJAMA": true
+        },
+        {
+            "name": "Project2",
+            "inputFolderPath": "test/input/xml",
+            "outputFolderPath": "test/output/xml",
+            "saveAsPDF": true,
+            "uploadToJAMA": false
+        }
+    ]
 }
