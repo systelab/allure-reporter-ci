@@ -1,8 +1,8 @@
 import * as puppeteer from "puppeteer";
 
-import { Configuration, ReportContent } from "@model";
-import { ConfigurationLoader, ReportFinder, PDFSaver, ReportParser, WorkspaceUtility } from "@utils";
-import { ApplicationHeader, DropZone } from "@widgets";
+import { Configuration, JAMACredentials, ReportContent } from "@model";
+import { ConfigurationLoader, JAMACredentialsLoader, PDFSaver, ReportFinder, ReportParser, WorkspaceUtility } from "@utils";
+import { ApplicationHeader, DropZone, JAMALogin } from "@widgets";
 
 
 describe("Generate Report", () =>
@@ -10,6 +10,7 @@ describe("Generate Report", () =>
     let browser: puppeteer.Browser;
     let page: puppeteer.Page;
     const configuration: Configuration = ConfigurationLoader.load();
+    const jamaCredentials: JAMACredentials = JAMACredentialsLoader.load(configuration);
 
     before(async () =>
     {
@@ -46,7 +47,7 @@ describe("Generate Report", () =>
                 {
                     it(`Upload results for ${inputReportContent.tmsId} (${project.name}) test to JAMA`, async () =>
                     {
-                        // TODO
+                        await JAMALogin.login(page, jamaCredentials);
                     });
                 }
             }
