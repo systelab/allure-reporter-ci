@@ -7,4 +7,9 @@ export class ApplicationHeader
     {
         await page.click("app-navbar button .fa-table");
     }
+
+    public static async showLogin(page: puppeteer.Page): Promise<void>
+    {
+        await page.click("app-navbar button .fa-user");
+    }
 }
