@@ -82,6 +82,11 @@ export class FilesystemUtility
         return false;
     }
 
+    public static getBasename(filePath: string): string
+    {
+        return path.basename(filePath);
+    }
+
     public static getExtension(filePath: string): string
     {
         const matches = /\.(\w+)$/.exec(filePath);

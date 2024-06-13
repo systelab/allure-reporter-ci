@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1579258079005' stop='1579258102312'>
-    <name>TC0003_PatientManagement_Allergy_e2e</name>
-    <title>TC0003_PatientManagement_Allergy_e2e</title>
+    <name>Patient Management Allergy</name>
+    <title>Patient Management Allergy</title>
     <test-cases>
         <test-case start='1579258088364' status='passed' stop='1579258091772'>
             <name>Assign an allergy to a patient: [name: Name, assertedDate: 01/01/2019, comments: Comments]</name>

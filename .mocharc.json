@@ -1,4 +1,5 @@
 {
+    "color": true,
     "diff": true,
     "extension": ["ts"],
     "package": "./package.json",

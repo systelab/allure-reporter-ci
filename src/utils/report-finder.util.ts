@@ -1,5 +1,5 @@
 import { Project, Report } from "@model";
-import { FilesystemUtility, WorkspaceUtility } from "@utils";
+import { Console, FilesystemUtility, WorkspaceUtility } from "@utils";
 
 
 export class ReportFinder
@@ -7,10 +7,10 @@ export class ReportFinder
     public static execute(project: Project): Report[]
     {
         const projectInputFolder = WorkspaceUtility.buildPath(project.inputFolderPath);
-        console.log(`Searching for Allure reports under '${projectInputFolder}'...`);
+        Console.log(`Searching for Allure reports under '${projectInputFolder}'...`);
 
         const reports: Report[] = [];
-        const inputReportFilepaths = FilesystemUtility.getFolderFiles(projectInputFolder);
+        const inputReportFilepaths: string[] = FilesystemUtility.getFolderFiles(projectInputFolder);
         for (const filePath of inputReportFilepaths)
         {
             if (this.hasFileNameUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
@@ -19,8 +19,8 @@ export class ReportFinder
             }
         }
 
-        console.log(`${reports.length} report(s) found.`);
-        console.log();
+        Console.log(`${reports.length} report(s) found.`);
+        Console.blankLine();
 
         return reports;
     }

@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1579258050363' stop='1579258063577'>
-    <name>TC0002_LoginManagement_e2e</name>
-    <title>TC0002_LoginManagement_e2e</title>
+    <name>Login Management</name>
+    <title>Login Management</title>
     <test-cases>
         <test-case start='1579258050363' status='passed' stop='1579258058861'>
             <name>Login correct</name>

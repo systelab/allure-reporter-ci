@@ -6,7 +6,7 @@ import { FilesystemUtility, WorkspaceUtility } from "@utils";
 
 export class PDFSaver
 {
-    public static async execute(page: puppeteer.Page, project: Project, inputReportContent: ReportContent): Promise<void>
+    public static async execute(page: puppeteer.Page, project: Project, inputReportContent: ReportContent): Promise<string>
     {
         const outputFolderPath = WorkspaceUtility.buildPath(project.outputFolderPath);
         if (!FilesystemUtility.exists(outputFolderPath))
@@ -28,6 +28,8 @@ export class PDFSaver
                             left: 35,
                             right: 35
                          } });
+
+        return pdfFilepath;
     }
 
     private static getUniquePDFFilepath(folderPath: string, inputReportContent: ReportContent): string

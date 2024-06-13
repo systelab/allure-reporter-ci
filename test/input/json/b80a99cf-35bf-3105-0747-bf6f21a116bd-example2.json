@@ -1,1 +1,45 @@
-{"uuid":"b80a99cf-35bf-3105-0747-bf6f21a116bd","name":"Test/ParametricTestSuite","status":"passed","stage":"finished","start":1594684837,"stop":1594684837,"links":[{"name":"Test/ParametricTestSuite","url":"https://mycompany.com/tms/Test/ParametricTestSuite","type":"tms"}],"steps":[{"name":"Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/0","status":"passed","stage":"finished","start":1594684837,"stop":1594684837},{"name":"Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/1","status":"passed","stage":"finished","start":1594684837,"stop":1594684837},{"name":"Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/2","status":"passed","stage":"finished","start":1594684837,"stop":1594684837},{"name":"Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/3","status":"passed","stage":"finished","start":1594684837,"stop":1594684837}]}
+{
+	"uuid": "b80a99cf-35bf-3105-0747-bf6f21a116bd",
+	"name": "Test/ParametricTestSuite",
+	"status": "passed",
+	"stage": "finished",
+	"start": 1594684837,
+	"stop": 1594684837,
+	"links": [
+		{
+			"name": "TC-PARAMETRIC-002",
+			"url": "https://mycompany.com/tms/Test/ParametricTestSuite",
+			"type": "tms"
+		}
+	],
+	"steps": [
+		{
+			"name": "Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/0",
+			"status": "passed",
+			"stage": "finished",
+			"start": 1594684837,
+			"stop": 1594684837
+		},
+		{
+			"name": "Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/1",
+			"status": "passed",
+			"stage": "finished",
+			"start": 1594684837,
+			"stop": 1594684837
+		},
+		{
+			"name": "Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/2",
+			"status": "passed",
+			"stage": "finished",
+			"start": 1594684837,
+			"stop": 1594684837
+		},
+		{
+			"name": "Action: Test/ParametricTestSuite.testSumReturnsExpectedResult/3",
+			"status": "passed",
+			"stage": "finished",
+			"start": 1594684837,
+			"stop": 1594684837
+		}
+	]
+}

@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1579258063605' stop='1579258079000'>
-    <name>TC0004_AllergyManagement_e2e</name>
-    <title>TC0004_AllergyManagement_e2e</title>
+    <name>Allergy Management</name>
+    <title>Allergy Management</title>
     <test-cases>
         <test-case start='1579258067253' status='passed' stop='1579258069554'>
             <name>Create an allergy: [name: Name, sign: Sign, symptom: Symptom]</name>

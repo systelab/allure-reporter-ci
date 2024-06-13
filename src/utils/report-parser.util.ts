@@ -1,4 +1,4 @@
-import * as DomParser from "dom-parser";
+import * as xml2js from "xml2js";
 
 import { ReportContent, Report } from "@model";
 import { FilesystemUtility, WorkspaceUtility } from "@utils";
@@ -6,7 +6,7 @@ import { FilesystemUtility, WorkspaceUtility } from "@utils";
 
 export class ReportParser
 {
-    public static execute(report: Report): ReportContent
+    public static async execute(report: Report): Promise<ReportContent>
     {
         if (FilesystemUtility.isJSONFile(report.filepath))
         {
@@ -20,7 +20,7 @@ export class ReportParser
         return null;
     }
 
-    private static parseJSON(report: Report): ReportContent
+    private static async parseJSON(report: Report): Promise<ReportContent>
     {
         try
         {
@@ -42,16 +42,16 @@ export class ReportParser
         }
     }
 
-    private static parseXML(report: Report): ReportContent
+    private static async parseXML(report: Report): Promise<ReportContent>
     {
         try
         {
-            const fileContent = this.readReportContent(report);
-            const parser = new DomParser();
-            const xmlDoc = parser.parseFromString(fileContent);
+            const fileContent: string = this.readReportContent(report);
+            const xmlDocument = await xml2js.parseStringPromise(fileContent);
 
-            const name: string = xmlDoc.getElementsByTagName("title")[0].childNodes[0].text;
-            const tmsId: string = this.getTmsIdFromXML(xmlDoc);
+            const titles = xmlDocument['ns2:test-suite'].title;
+            const name: string = titles[0];
+            const tmsId: string = this.getTmsIdFromXML(xmlDocument);
 
             return { name, tmsId };
         }
@@ -61,18 +61,16 @@ export class ReportParser
         }
     }
 
-    private static getTmsIdFromXML(xmlDoc: Document): string
+    private static getTmsIdFromXML(xmlDocument): string
     {
-        const labels = xmlDoc.getElementsByTagName("labels")[0];
-        for (let i = 0; i < labels.childNodes.length; i++)
+        const testCases = xmlDocument['ns2:test-suite']['test-cases'][0];
+        const labels = testCases['test-case'][0].labels[0].label;
+        for (let i = 0; i < labels.length; i++)
         {
-            const labelAttributes = (labels as any).childNodes[i].attributes;
-            if (labelAttributes.length === 2)
+            const labelName: string = labels[i].$.name;
+            if (labelName === "tms")
             {
-                if (labelAttributes[0].name === "name" && labelAttributes[0].value === "tms")
-                {
-                    return labelAttributes[1].value;
-                }
+                return labels[i].$.value;
             }
         }
 

@@ -1,5 +1,8 @@
 import * as puppeteer from "puppeteer";
 
+import { ThreadUtility } from "@utils";
+
+
 export class DropZone
 {
     public static async uploadFile(page: puppeteer.Page, filePath: string): Promise<void>
@@ -24,9 +27,9 @@ export class DropZone
             ));
         }, fileInputIdentifier, dropZoneSelector);
 
-        const fileInput = await page.$(`#${fileInputIdentifier}`);
+        const fileInput: puppeteer.ElementHandle<HTMLInputElement> = await page.$(`#${fileInputIdentifier}`) as puppeteer.ElementHandle<HTMLInputElement>;
         await fileInput.uploadFile(filePath);
-        await page.waitFor(1000);
+        await ThreadUtility.sleep(1000);
 
         await page.evaluate((fileInputIdentifier) =>
         {

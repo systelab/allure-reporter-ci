@@ -1,23 +1,77 @@
 {
     "version": "0.2.0",
-    "configurations":
-    [
+    "configurations": [
         {
-            "type": "node",
-            "request": "launch",
-            "name": "Debug Report",
-            "runtimeExecutable": "npm",
-            "runtimeArgs": ["run", "report"],
-            "cwd": "${workspaceFolder}",
-            "protocol": "inspector",
-            "console": "internalConsole",
-            "internalConsoleOptions": "neverOpen",
-            "outputCapture": "std",
-            "env":
-            {
-                "ALLURE_REPORTER_CI_WORKSPACE": "",
-                "ALLURE_REPORTER_CI_CONFIG_FILE": "test/configuration/configuration-all.json"
-            }
+          "type": "node",
+          "request": "launch",
+          "name": "Run All Tests",
+          "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+          "args": [
+            "-r",
+            "ts-node/register",
+            "-r",
+            "tsconfig-paths/register",
+            "--spec",
+            "src/index.ts",
+            "--config",
+            ".mocharc.json"     
+          ],
+          "env": {
+            "ALLURE_REPORTER_CI_WORKSPACE": "${workspaceFolder}",
+            "ALLURE_REPORTER_CI_CONFIG_FILE": "test/configuration/configuration-all.json"
+          },
+          "internalConsoleOptions": "openOnSessionStart",
+          "skipFiles": [
+            "<node_internals>/**"
+          ]
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Run JSON Tests",
+          "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+          "args": [
+            "-r",
+            "ts-node/register",
+            "-r",
+            "tsconfig-paths/register",
+            "--spec",
+            "src/index.ts",
+            "--config",
+            ".mocharc.json"     
+          ],
+          "env": {
+            "ALLURE_REPORTER_CI_WORKSPACE": "${workspaceFolder}",
+            "ALLURE_REPORTER_CI_CONFIG_FILE": "test/configuration/configuration-json.json"
+          },
+          "internalConsoleOptions": "openOnSessionStart",
+          "skipFiles": [
+            "<node_internals>/**"
+          ]
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Run XML Tests",
+          "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+          "args": [
+            "-r",
+            "ts-node/register",
+            "-r",
+            "tsconfig-paths/register",
+            "--spec",
+            "src/index.ts",
+            "--config",
+            ".mocharc.json"     
+          ],
+          "env": {
+            "ALLURE_REPORTER_CI_WORKSPACE": "${workspaceFolder}",
+            "ALLURE_REPORTER_CI_CONFIG_FILE": "test/configuration/configuration-xml.json"
+          },
+          "internalConsoleOptions": "openOnSessionStart",
+          "skipFiles": [
+            "<node_internals>/**"
+          ]
         }
     ]
 }
