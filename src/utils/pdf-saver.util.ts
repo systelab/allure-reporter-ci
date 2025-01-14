@@ -34,7 +34,12 @@ export class PDFSaver
 
     private static getUniquePDFFilepath(folderPath: string, inputReportContent: ReportContent): string
     {
-        const filename: string = `${inputReportContent.tmsId}_${inputReportContent.name}`.replace(/[/\\ ]/g, "_");
+        let filename: string = `${inputReportContent.tmsId}_${inputReportContent.name}`.replace(/[/\\ ]/g, "_");
+
+        const maxFilenameLength = 250;
+        if (filename.length > maxFilenameLength) {
+            filename = filename.substring(0, maxFilenameLength);
+        }
 
         let counter = 2;
         let pdfFilepath: string = FilesystemUtility.joinPaths(folderPath, `${filename}.pdf`);
