@@ -13,7 +13,7 @@ export class ReportFinder
         const inputReportFilepaths: string[] = FilesystemUtility.getFolderFiles(projectInputFolder);
         for (const filePath of inputReportFilepaths)
         {
-            if (this.hasFileNameUUID(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
+            if (this.hasFileNameUUID(filePath) && !this.hasFileNameContainer(filePath) && ((FilesystemUtility.isJSONFile(filePath)) || (FilesystemUtility.isXMLFile(filePath))))
             {
                 reports.push({ filepath: FilesystemUtility.joinPaths(project.inputFolderPath, filePath) });
             }
@@ -33,5 +33,10 @@ export class ReportFinder
             return true;
         }
         return false;
+    }
+
+    private static hasFileNameContainer(filePath: string): boolean
+    {
+        return filePath.includes('container');
     }
 }
